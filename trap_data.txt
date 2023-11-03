@@ -1,0 +1,12 @@
+Enterprise => 1.3.6.1.4.1.15914.1.2.0
+Generic => 6
+Specific => 3
+
+Varbinds:
+1.3.6.1.4.1.15914.1.1.12 => NDS-Nvision-157043
+1.3.6.1.4.1.15914.1.1.1 => 7
+1.3.6.1.4.1.15914.1.1.11 => 192.168.243.109
+1.3.6.1.4.1.15914.1.1.4 => {"Hostname":"EBD01MD","IP":"192.168.243.109","HostState":"UP","AlarmType":"CRITICAL","AlertDescription":"","IncidentID":"NDS-Nvision-157043","Subject":"","SiteStatus":"Up","NetreoServer":"Netreo","URL":"http://nds-nvision.network-data.com/fw/index.php?r=incident/detaillog&incident_id=157043","Threshold":"/ Percent Used Space","ThresholdValue":"90","CurrentValue":"90.058609 "}
+1.3.6.1.4.1.15914.1.1.2 => EBD01MD
+1.3.6.1.4.1.15914.1.1.13 => / Percent Used Space
+1.3.6.1.4.1.15914.1.1.10 => EBD01MD
