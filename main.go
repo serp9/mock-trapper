@@ -118,7 +118,7 @@ func readTrapData(file string) (trapData *g.SnmpTrap, err error) {
 	return trapData, nil
 }
 
-func sendTrap(entity string, target string, port uint16, community string, trapData *g.SnmpTrap, c chan string) {
+/* func sendTrap(entity string, target string, port uint16, community string, trapData *g.SnmpTrap, c chan string) {
 	g.Default.Target = target
 	g.Default.Port = port
 	g.Default.Version = g.Version1 //g.Version2c
@@ -136,6 +136,34 @@ func sendTrap(entity string, target string, port uint16, community string, trapD
 	if err != nil {
 		log.Fatalf("SendTrap() err: %v", err)
 		c <- "!! RUN FAILED !!"
+	}
+
+	c <- "successful run"
+
+} */
+
+func sendTrap(entity string, target string, port uint16, community string, trapData *g.SnmpTrap, c chan string) {
+	conn := &g.GoSNMP{
+		Target:    target,
+		Port:      port,
+		Community: community,
+		Version:   g.Version1,
+		Timeout:   5 * time.Second, // Increase the timeout
+	}
+
+	trapData.AgentAddress = entity
+
+	err := conn.Connect()
+	if err != nil {
+		c <- "Connect error: " + err.Error()
+		return
+	}
+	defer conn.Conn.Close()
+
+	_, err = conn.SendTrap(*trapData)
+	if err != nil {
+		c <- "SendTrap error: " + err.Error()
+		return
 	}
 
 	c <- "successful run"
